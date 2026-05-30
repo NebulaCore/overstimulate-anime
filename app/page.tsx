@@ -1,18 +1,18 @@
 export default function Home() {
-  const trending = [
-    "Voidbound",
-    "Fallen Crown",
-    "Solo Max-Level",
-    "Love Overload",
-    "Tokyo Nocturne",
-  ];
+const trending = [
+  "Coming Soon",
+  "Coming Soon",
+  "Coming Soon",
+  "Coming Soon",
+  "Coming Soon",
+];
 
-  const releases = [
-    "Chronicles of Eryndor",
-    "Syndicate Requiem",
-    "Neon Exodus",
-    "Our Static Hearts",
-  ];
+const releases = [
+  "Future Series",
+  "Future Series",
+  "Future Series",
+  "Future Series",
+];
 
   const genres = ["Action", "Romance", "Fantasy", "Horror", "Comedy", "Sci-Fi"];
 
@@ -40,12 +40,11 @@ export default function Home() {
         <div className="rounded-3xl border border-purple-700/50 bg-gradient-to-r from-black via-purple-950 to-fuchsia-900 p-10 shadow-2xl shadow-purple-900/40">
           <p className="text-sm font-bold text-red-400">🔥 HOT ORIGINAL</p>
           <h2 className="mt-4 text-6xl font-black leading-none">
-            REALM <br />
-            <span className="text-fuchsia-500">BREAKER</span>
+            OVERSTIMULATE <br />
+            <span className="text-fuchsia-500">ANIME</span>
           </h2>
           <p className="mt-6 max-w-xl text-lg text-zinc-200">
-            In a world where realms collide, he’s the anomaly they never saw
-            coming.
+            A new home for independent manga, webcomics, and anime-inspired stories..
           </p>
 
           <div className="mt-8 flex gap-4">
@@ -60,7 +59,7 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-6">
-        <h3 className="mb-5 text-2xl font-black">🔥 Trending Now</h3>
+        <h3 className="mb-5 text-2xl font-black">Featured Series Coming Soon</h3>
         <div className="grid grid-cols-2 gap-5 md:grid-cols-5">
           {trending.map((title, index) => (
             <div
