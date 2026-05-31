@@ -8,13 +8,21 @@ export default function Home() {
   const [hasUnread, setHasUnread] = useState(true);
   const [message, setMessage] = useState("");
 
+  function showMessage(text: string) {
+    setMessage(text);
+
+    setTimeout(() => {
+      setMessage("");
+    }, 10000);
+  }
+
   function handleSearch() {
     if (!search.trim()) {
-      setMessage("Type something in the search bar first.");
+      showMessage("Type something in the search bar first.");
       return;
     }
 
-    setMessage(`Search for "${search}" is coming soon.`);
+    showMessage(`Search for "${search}" is coming soon.`);
   }
 
   function openNotifications() {
@@ -72,7 +80,7 @@ export default function Home() {
             </button>
 
             <button
-              onClick={() => setMessage("Sign up system coming soon.")}
+              onClick={() => showMessage("Sign up system coming soon.")}
               className="whitespace-nowrap rounded-full bg-fuchsia-600 px-6 py-2 font-bold hover:bg-fuchsia-500"
             >
               Sign Up
@@ -160,14 +168,14 @@ export default function Home() {
 
           <div className="mt-8 flex flex-wrap gap-4">
             <button
-              onClick={() => setMessage("Waitlist feature coming soon.")}
+              onClick={() => showMessage("Waitlist feature coming soon.")}
               className="rounded-full bg-fuchsia-600 px-8 py-3 font-bold hover:bg-fuchsia-500"
             >
               Join Waitlist
             </button>
 
             <button
-              onClick={() => setMessage("Creator info page coming soon.")}
+              onClick={() => showMessage("Creator info page coming soon.")}
               className="rounded-full border border-white/30 px-8 py-3 font-bold hover:border-fuchsia-500 hover:text-fuchsia-400"
             >
               Creator Info
@@ -199,13 +207,10 @@ export default function Home() {
             className="rounded-3xl border border-purple-800/70 bg-zinc-950/40 p-10 text-center"
           >
             <div className="text-5xl">{icon}</div>
-
             <h2 className="mt-4 text-3xl font-black">{title}</h2>
-
             <p className="mt-3 text-xl font-black text-fuchsia-500">
               COMING SOON
             </p>
-
             <p className="mx-auto mt-5 max-w-sm text-zinc-300">{text}</p>
           </div>
         ))}
@@ -227,7 +232,9 @@ export default function Home() {
           </p>
 
           <button
-            onClick={() => setMessage("Creator application form coming soon.")}
+            onClick={() =>
+              showMessage("Creator application form coming soon.")
+            }
             className="mt-8 rounded-lg bg-fuchsia-600 px-8 py-3 font-bold hover:bg-fuchsia-500"
           >
             Apply Now
