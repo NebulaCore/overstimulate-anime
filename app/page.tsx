@@ -34,7 +34,7 @@ export default function Home() {
     <main className="min-h-screen overflow-x-hidden bg-black text-white">
       <header className="sticky top-0 z-50 border-b border-fuchsia-900/40 bg-black">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-6">
-          <h1 className="whitespace-nowrap text-2xl font-black tracking-tight">
+          <h1 className="text-xl font-black tracking-tight">
   OVERSTIMULATE
   <span className="ml-2 text-fuchsia-500">ANIME</span>
 </h1>
