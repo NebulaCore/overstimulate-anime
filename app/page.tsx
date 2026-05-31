@@ -22,7 +22,7 @@ useEffect(() => {
   function showMessage(text: string) {
     setMessage(text);
 
-    setTimeout(() => {
+    setTimeout(() => {1
       setMessage("");
     }, 5000);
   }
