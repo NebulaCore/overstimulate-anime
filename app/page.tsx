@@ -23,9 +23,9 @@ useEffect(() => {
   function showMessage(text: string) {
     setMessage(text);
 
-    setTimeout(() => {1
-      setMessage("");
-    }, 5000);
+  setTimeout(() => {
+    setMessage("");
+}, 5000);
   }
 
   function handleSearch() {
