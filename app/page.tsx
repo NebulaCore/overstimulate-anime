@@ -7,25 +7,25 @@ export default function Home() {
   const [showNotifications, setShowNotifications] = useState(false);
   const [hasUnread, setHasUnread] = useState(false);
   const [activeTab, setActiveTab] = useState("Home");
-
-useEffect(() => {
-  const saved = localStorage.getItem("hasUnread");
-
-  if (saved === null) {
-    setHasUnread(true);
-    localStorage.setItem("hasUnread", "true");
-  } else {
-    setHasUnread(saved === "true");
-  }
-}, []);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const saved = localStorage.getItem("hasUnread");
+
+    if (saved === null) {
+      setHasUnread(true);
+      localStorage.setItem("hasUnread", "true");
+    } else {
+      setHasUnread(saved === "true");
+    }
+  }, []);
 
   function showMessage(text: string) {
     setMessage(text);
 
-  setTimeout(() => {
-    setMessage("");
-}, 5000);
+    setTimeout(() => {
+      setMessage("");
+    }, 5000);
   }
 
   function handleSearch() {
@@ -38,9 +38,9 @@ useEffect(() => {
   }
 
   function openNotifications() {
-  setShowNotifications(true);
-  setHasUnread(false);
-  localStorage.setItem("hasUnread", "false");
+    setShowNotifications(true);
+    setHasUnread(false);
+    localStorage.setItem("hasUnread", "false");
   }
 
   return (
@@ -48,25 +48,25 @@ useEffect(() => {
       <header className="sticky top-0 z-50 border-b border-fuchsia-900/40 bg-black">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-6">
           <h1 className="text-xl font-black tracking-tight">
-  OVERSTIMULATE
-  <span className="ml-2 text-fuchsia-500">ANIME</span>
-</h1>
+            OVERSTIMULATE
+            <span className="ml-2 text-fuchsia-500">ANIME</span>
+          </h1>
 
           <nav className="flex items-center gap-8 text-sm font-semibold">
-  {["Home", "Genres", "Trending", "Browse"].map((tab) => (
-    <button
-      key={tab}
-      onClick={() => setActiveTab(tab)}
-      className={`pb-1 transition ${
-        activeTab === tab
-          ? "border-b-2 border-fuchsia-500 text-fuchsia-500"
-          : "text-zinc-300 hover:text-white"
-      }`}
-    >
-      {tab}
-    </button>
-  ))}
-</nav>
+            {["Home", "Genres", "Trending", "Browse"].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`pb-1 transition ${
+                  activeTab === tab
+                    ? "border-b-2 border-fuchsia-500 text-fuchsia-500"
+                    : "text-zinc-300 hover:text-white"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </nav>
 
           <div className="flex items-center gap-4">
             <div className="flex items-center rounded-full border border-zinc-700 bg-zinc-950 px-4 py-2">
@@ -137,98 +137,154 @@ useEffect(() => {
         </div>
       )}
 
-      <section className="mx-auto max-w-6xl px-6 py-10">
-        <div className="rounded-3xl border border-purple-700/60 bg-gradient-to-r from-black via-purple-950 to-fuchsia-900 p-12 shadow-2xl shadow-purple-900/40">
-          <p className="text-sm font-bold text-red-400">
-            🔥 PLATFORM LAUNCHING SOON
-          </p>
+      {activeTab === "Home" && (
+        <>
+          <section className="mx-auto max-w-6xl px-6 py-10">
+            <div className="rounded-3xl border border-purple-700/60 bg-gradient-to-r from-black via-purple-950 to-fuchsia-900 p-12 shadow-2xl shadow-purple-900/40">
+              <p className="text-sm font-bold text-red-400">
+                🔥 PLATFORM LAUNCHING SOON
+              </p>
 
-          <h1 className="mt-5 text-6xl font-black leading-none">
-            OVERSTIMULATE
-            <br />
-            <span className="text-fuchsia-500">ANIME</span>
-          </h1>
+              <h1 className="mt-5 text-6xl font-black leading-none">
+                OVERSTIMULATE
+                <br />
+                <span className="text-fuchsia-500">ANIME</span>
+              </h1>
 
-          <p className="mt-6 max-w-2xl text-xl text-zinc-100">
-            A new home for independent manga, webcomics, and anime-inspired
-            stories.
-          </p>
+              <p className="mt-6 max-w-2xl text-xl text-zinc-100">
+                A new home for independent manga, webcomics, and anime-inspired
+                stories.
+              </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
-            <button
-              onClick={() => showMessage("Waitlist feature coming soon.")}
-              className="rounded-full bg-fuchsia-600 px-8 py-3 font-bold hover:bg-fuchsia-500"
-            >
-              Join Waitlist
-            </button>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <button
+                  onClick={() => showMessage("Waitlist feature coming soon.")}
+                  className="rounded-full bg-fuchsia-600 px-8 py-3 font-bold hover:bg-fuchsia-500"
+                >
+                  Join Waitlist
+                </button>
 
-            <button
-              onClick={() => showMessage("Creator info page coming soon.")}
-              className="rounded-full border border-white/30 px-8 py-3 font-bold hover:border-fuchsia-500 hover:text-fuchsia-400"
-            >
-              Creator Info
-            </button>
+                <button
+                  onClick={() => showMessage("Creator info page coming soon.")}
+                  className="rounded-full border border-white/30 px-8 py-3 font-bold hover:border-fuchsia-500 hover:text-fuchsia-400"
+                >
+                  Creator Info
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section className="mx-auto grid max-w-6xl gap-6 px-6 py-6 md:grid-cols-3">
+            {[
+              [
+                "🆕",
+                "New Added",
+                "When creators publish manga, the newest uploads will appear here first.",
+              ],
+              [
+                "⭐",
+                "Featured Series",
+                "Featured stories selected by the team will be displayed here.",
+              ],
+              [
+                "⚡",
+                "New Releases",
+                "New chapters and updates will appear here automatically.",
+              ],
+            ].map(([icon, title, text]) => (
+              <div
+                key={title}
+                className="rounded-3xl border border-purple-800/70 bg-zinc-950/40 p-10 text-center"
+              >
+                <div className="text-5xl">{icon}</div>
+                <h2 className="mt-4 text-3xl font-black">{title}</h2>
+                <p className="mt-3 text-xl font-black text-fuchsia-500">
+                  COMING SOON
+                </p>
+                <p className="mx-auto mt-5 max-w-sm text-zinc-300">{text}</p>
+              </div>
+            ))}
+          </section>
+
+          <section className="mx-auto max-w-6xl px-6 py-6">
+            <div className="rounded-3xl border border-purple-800/70 bg-zinc-950/40 p-12 text-center">
+              <div className="text-5xl">🎨</div>
+
+              <h2 className="mt-4 text-4xl font-black">
+                Creator Applications
+              </h2>
+
+              <p className="mt-3 text-3xl font-black text-fuchsia-500">
+                OPEN NOW
+              </p>
+
+              <p className="mx-auto mt-5 max-w-2xl text-zinc-300">
+                Submit your manga, webcomic, or anime-inspired story and become
+                one of the first creators on the platform.
+              </p>
+
+              <button
+                onClick={() =>
+                  showMessage("Creator application form coming soon.")
+                }
+                className="mt-8 rounded-lg bg-fuchsia-600 px-8 py-3 font-bold hover:bg-fuchsia-500"
+              >
+                Apply Now
+              </button>
+            </div>
+          </section>
+        </>
+      )}
+
+      {activeTab === "Genres" && (
+        <section className="mx-auto max-w-6xl px-6 py-10">
+          <h1 className="mb-8 text-5xl font-black">Genres</h1>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {["Action", "Fantasy", "Romance", "Comedy", "Horror", "Sci-Fi"].map(
+              (genre) => (
+                <div
+                  key={genre}
+                  className="rounded-3xl border border-purple-800 bg-zinc-950/40 p-8 text-center"
+                >
+                  <h2 className="text-2xl font-black">{genre}</h2>
+                  <p className="mt-3 text-fuchsia-500">COMING SOON</p>
+                </div>
+              )
+            )}
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      <section className="mx-auto grid max-w-6xl gap-6 px-6 py-6 md:grid-cols-3">
-        {[
-          [
-            "🆕",
-            "New Added",
-            "When creators publish manga, the newest uploads will appear here first.",
-          ],
-          [
-            "⭐",
-            "Featured Series",
-            "Featured stories selected by the team will be displayed here.",
-          ],
-          [
-            "⚡",
-            "New Releases",
-            "New chapters and updates will appear here automatically.",
-          ],
-        ].map(([icon, title, text]) => (
-          <div
-            key={title}
-            className="rounded-3xl border border-purple-800/70 bg-zinc-950/40 p-10 text-center"
-          >
-            <div className="text-5xl">{icon}</div>
-            <h2 className="mt-4 text-3xl font-black">{title}</h2>
-            <p className="mt-3 text-xl font-black text-fuchsia-500">
-              COMING SOON
+      {activeTab === "Trending" && (
+        <section className="mx-auto max-w-6xl px-6 py-10">
+          <h1 className="mb-8 text-5xl font-black">Trending Manga</h1>
+
+          <div className="rounded-3xl border border-purple-800 bg-zinc-950/40 p-12 text-center">
+            <h2 className="text-3xl font-black">No Trending Manga Yet</h2>
+
+            <p className="mt-4 text-zinc-400">
+              Trending series will appear once creators start publishing.
             </p>
-            <p className="mx-auto mt-5 max-w-sm text-zinc-300">{text}</p>
           </div>
-        ))}
-      </section>
+        </section>
+      )}
 
-      <section className="mx-auto max-w-6xl px-6 py-6">
-        <div className="rounded-3xl border border-purple-800/70 bg-zinc-950/40 p-12 text-center">
-          <div className="text-5xl">🎨</div>
+      {activeTab === "Browse" && (
+        <section className="mx-auto max-w-6xl px-6 py-10">
+          <h1 className="mb-8 text-5xl font-black">Browse Manga</h1>
 
-          <h2 className="mt-4 text-4xl font-black">Creator Applications</h2>
+          <div className="rounded-3xl border border-purple-800 bg-zinc-950/40 p-12 text-center">
+            <h2 className="text-3xl font-black">
+              Manga Library Coming Soon
+            </h2>
 
-          <p className="mt-3 text-3xl font-black text-fuchsia-500">
-            OPEN NOW
-          </p>
-
-          <p className="mx-auto mt-5 max-w-2xl text-zinc-300">
-            Submit your manga, webcomic, or anime-inspired story and become one
-            of the first creators on the platform.
-          </p>
-
-          <button
-            onClick={() =>
-              showMessage("Creator application form coming soon.")
-            }
-            className="mt-8 rounded-lg bg-fuchsia-600 px-8 py-3 font-bold hover:bg-fuchsia-500"
-          >
-            Apply Now
-          </button>
-        </div>
-      </section>
+            <p className="mt-4 text-zinc-400">
+              Published manga will appear here automatically.
+            </p>
+          </div>
+        </section>
+      )}
 
       <footer className="mt-16 border-t border-purple-900/40 py-8 text-center text-zinc-400">
         <h2 className="text-2xl font-black text-white">
