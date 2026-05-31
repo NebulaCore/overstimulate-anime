@@ -16,20 +16,16 @@ export default function Home() {
     setMessage(`Search for "${search}" is coming soon.`);
   }
 
-  function handleSignUp() {
-    setMessage("Sign up system coming soon.");
-  }
-
   return (
     <main className="min-h-screen overflow-x-hidden bg-black text-white">
       <header className="sticky top-0 z-50 border-b border-fuchsia-900/40 bg-black">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-8 px-8 py-3">
-          <h1 className="whitespace-nowrap text-2xl font-black leading-none">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-6">
+          <h1 className="whitespace-nowrap text-2xl font-black tracking-tight">
             OVERSTIMULATE
             <span className="ml-2 text-fuchsia-500">ANIME</span>
           </h1>
 
-          <nav className="hidden items-center gap-10 text-sm font-semibold md:flex">
+          <nav className="flex items-center gap-8 text-sm font-semibold">
             <a className="cursor-pointer border-b-2 border-fuchsia-500 pb-1 text-fuchsia-500">
               Home
             </a>
@@ -44,8 +40,8 @@ export default function Home() {
             </a>
           </nav>
 
-          <div className="flex items-center gap-5">
-            <div className="hidden items-center rounded-full border border-zinc-700 bg-zinc-950 px-4 py-2 lg:flex">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center rounded-full border border-zinc-700 bg-zinc-950 px-4 py-2">
               <input
                 type="text"
                 value={search}
@@ -56,56 +52,33 @@ export default function Home() {
                 placeholder="Search..."
                 className="w-52 bg-transparent text-sm text-white outline-none placeholder:text-zinc-500"
               />
-
-              <button onClick={handleSearch} className="ml-3 text-lg">
+              <button onClick={handleSearch} className="ml-2 text-sm">
                 🔍
               </button>
             </div>
 
             <button
               onClick={() => setShowNotifications(!showNotifications)}
-              className="relative text-xl transition hover:scale-110"
+              className="relative text-xl"
             >
               🔔
-              <span className="absolute right-0 top-0 h-2.5 w-2.5 rounded-full bg-red-500"></span>
+              <span className="absolute right-0 top-0 h-2 w-2 rounded-full bg-red-500"></span>
             </button>
 
             <button
-              onClick={handleSignUp}
-              className="rounded-full bg-fuchsia-600 px-6 py-2 font-semibold hover:bg-fuchsia-500"
+              onClick={() => setMessage("Sign up system coming soon.")}
+              className="whitespace-nowrap rounded-full bg-fuchsia-600 px-6 py-2 font-bold hover:bg-fuchsia-500"
             >
               Sign Up
             </button>
           </div>
         </div>
 
-        <div className="mx-auto flex max-w-7xl px-8 pb-3 lg:hidden">
-          <div className="flex w-full items-center rounded-full border border-zinc-700 bg-zinc-950 px-4 py-2">
-            <input
-              type="text"
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter") handleSearch();
-              }}
-              placeholder="Search for series, creators..."
-              className="w-full bg-transparent text-sm text-white outline-none placeholder:text-zinc-500"
-            />
-
-            <button onClick={handleSearch} className="ml-3 text-lg">
-              🔍
-            </button>
-          </div>
-        </div>
-
         {showNotifications && (
-          <div className="mx-auto max-w-7xl px-8 pb-4">
+          <div className="mx-auto max-w-7xl px-6 pb-4">
             <div className="rounded-xl border border-fuchsia-800 bg-zinc-950 p-4 text-sm text-zinc-300">
               <h3 className="mb-2 font-bold text-white">Notifications</h3>
               <p>No notifications yet.</p>
-              <p className="mt-2 text-zinc-500">
-                Creator updates and new manga releases will appear here.
-              </p>
             </div>
           </div>
         )}
@@ -120,18 +93,18 @@ export default function Home() {
       )}
 
       <section className="mx-auto max-w-6xl px-6 py-10">
-        <div className="rounded-3xl border border-purple-700/60 bg-gradient-to-r from-black via-purple-950 to-fuchsia-900 p-8 shadow-2xl shadow-purple-900/40 md:p-12">
+        <div className="rounded-3xl border border-purple-700/60 bg-gradient-to-r from-black via-purple-950 to-fuchsia-900 p-12 shadow-2xl shadow-purple-900/40">
           <p className="text-sm font-bold text-red-400">
             🔥 PLATFORM LAUNCHING SOON
           </p>
 
-          <h1 className="mt-5 text-5xl font-black leading-none md:text-6xl">
+          <h1 className="mt-5 text-6xl font-black leading-none">
             OVERSTIMULATE
             <br />
             <span className="text-fuchsia-500">ANIME</span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg text-zinc-100 md:text-xl">
+          <p className="mt-6 max-w-2xl text-xl text-zinc-100">
             A new home for independent manga, webcomics, and anime-inspired
             stories.
           </p>
