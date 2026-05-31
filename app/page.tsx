@@ -13,7 +13,7 @@ export default function Home() {
 
     setTimeout(() => {
       setMessage("");
-    }, 10000);
+    }, 5000);
   }
 
   function handleSearch() {
@@ -72,12 +72,38 @@ export default function Home() {
               </button>
             </div>
 
-            <button onClick={openNotifications} className="relative text-xl">
-              🔔
-              {hasUnread && (
-                <span className="absolute right-0 top-0 h-2 w-2 rounded-full bg-red-500"></span>
+            <div className="relative">
+              <button onClick={openNotifications} className="relative text-xl">
+                🔔
+                {hasUnread && (
+                  <span className="absolute right-0 top-0 h-2 w-2 rounded-full bg-red-500"></span>
+                )}
+              </button>
+
+              {showNotifications && (
+                <div className="absolute right-0 top-12 z-50 w-80 rounded-2xl border border-fuchsia-800 bg-zinc-950 shadow-2xl shadow-fuchsia-900/40">
+                  <div className="flex items-center justify-between border-b border-zinc-800 p-4">
+                    <h2 className="font-bold">Notifications</h2>
+
+                    <button
+                      onClick={() => setShowNotifications(false)}
+                      className="text-zinc-400 hover:text-white"
+                    >
+                      ✕
+                    </button>
+                  </div>
+
+                  <div className="p-4">
+                    <div className="rounded-xl border border-zinc-800 bg-black p-4">
+                      <p className="font-bold">No notifications yet.</p>
+                      <p className="mt-2 text-sm text-zinc-500">
+                        Creator updates and new manga releases will appear here.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               )}
-            </button>
+            </div>
 
             <button
               onClick={() => showMessage("Sign up system coming soon.")}
@@ -88,58 +114,6 @@ export default function Home() {
           </div>
         </div>
       </header>
-
-      {showNotifications && (
-        <>
-          <div
-            className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm"
-            onClick={() => setShowNotifications(false)}
-          />
-
-          <div className="fixed left-1/2 top-1/2 z-50 w-[420px] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-fuchsia-800 bg-zinc-950 shadow-2xl shadow-fuchsia-900/40">
-            <div className="flex items-center justify-between border-b border-zinc-800 p-5">
-              <h2 className="text-xl font-black">
-                Overstimulate{" "}
-                <span className="text-fuchsia-500">Notifications</span>
-              </h2>
-
-              <button
-                onClick={() => setShowNotifications(false)}
-                className="rounded-full px-3 py-1 text-xl text-zinc-400 hover:bg-zinc-800 hover:text-white"
-              >
-                ✕
-              </button>
-            </div>
-
-            <div className="max-h-[500px] overflow-y-auto p-5">
-              <div className="rounded-xl border border-zinc-800 bg-black p-4">
-                <p className="font-bold text-white">No notifications yet.</p>
-
-                <p className="mt-2 text-sm text-zinc-500">
-                  Creator updates and new manga releases will appear here.
-                </p>
-              </div>
-
-              <div className="mt-4 rounded-xl border border-zinc-800 bg-black p-4">
-                <p className="font-bold text-white">Creator applications</p>
-
-                <p className="mt-2 text-sm text-zinc-500">
-                  Application alerts and review updates will appear here soon.
-                </p>
-              </div>
-
-              <div className="mt-4 rounded-xl border border-zinc-800 bg-black p-4">
-                <p className="font-bold text-white">New manga releases</p>
-
-                <p className="mt-2 text-sm text-zinc-500">
-                  Once manga is uploaded, release notifications will appear in
-                  this panel.
-                </p>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
 
       {message && (
         <div className="mx-auto mt-6 max-w-6xl px-6">
