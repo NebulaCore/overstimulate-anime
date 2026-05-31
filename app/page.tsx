@@ -6,6 +6,7 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const [showNotifications, setShowNotifications] = useState(false);
   const [hasUnread, setHasUnread] = useState(false);
+  const [activeTab, setActiveTab] = useState("Home");
 
 useEffect(() => {
   const saved = localStorage.getItem("hasUnread");
@@ -52,19 +53,20 @@ useEffect(() => {
 </h1>
 
           <nav className="flex items-center gap-8 text-sm font-semibold">
-            <a className="cursor-pointer border-b-2 border-fuchsia-500 pb-1 text-fuchsia-500">
-              Home
-            </a>
-            <a className="cursor-pointer text-zinc-300 hover:text-white">
-              Genres
-            </a>
-            <a className="cursor-pointer text-zinc-300 hover:text-white">
-              Trending
-            </a>
-            <a className="cursor-pointer text-zinc-300 hover:text-white">
-              Browse
-            </a>
-          </nav>
+  {["Home", "Genres", "Trending", "Browse"].map((tab) => (
+    <button
+      key={tab}
+      onClick={() => setActiveTab(tab)}
+      className={`pb-1 transition ${
+        activeTab === tab
+          ? "border-b-2 border-fuchsia-500 text-fuchsia-500"
+          : "text-zinc-300 hover:text-white"
+      }`}
+    >
+      {tab}
+    </button>
+  ))}
+</nav>
 
           <div className="flex items-center gap-4">
             <div className="flex items-center rounded-full border border-zinc-700 bg-zinc-950 px-4 py-2">
