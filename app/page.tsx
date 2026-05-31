@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function Home() {
   const [search, setSearch] = useState("");
   const [showNotifications, setShowNotifications] = useState(false);
+  const [hasUnread, setHasUnread] = useState(true);
   const [message, setMessage] = useState("");
 
   function handleSearch() {
@@ -14,6 +15,11 @@ export default function Home() {
     }
 
     setMessage(`Search for "${search}" is coming soon.`);
+  }
+
+  function openNotifications() {
+    setShowNotifications(true);
+    setHasUnread(false);
   }
 
   return (
@@ -52,17 +58,17 @@ export default function Home() {
                 placeholder="Search..."
                 className="w-52 bg-transparent text-sm text-white outline-none placeholder:text-zinc-500"
               />
+
               <button onClick={handleSearch} className="ml-2 text-sm">
                 🔍
               </button>
             </div>
 
-            <button
-              onClick={() => setShowNotifications(!showNotifications)}
-              className="relative text-xl"
-            >
+            <button onClick={openNotifications} className="relative text-xl">
               🔔
-              <span className="absolute right-0 top-0 h-2 w-2 rounded-full bg-red-500"></span>
+              {hasUnread && (
+                <span className="absolute right-0 top-0 h-2 w-2 rounded-full bg-red-500"></span>
+              )}
             </button>
 
             <button
@@ -73,16 +79,29 @@ export default function Home() {
             </button>
           </div>
         </div>
-
-        {showNotifications && (
-          <div className="mx-auto max-w-7xl px-6 pb-4">
-            <div className="rounded-xl border border-fuchsia-800 bg-zinc-950 p-4 text-sm text-zinc-300">
-              <h3 className="mb-2 font-bold text-white">Notifications</h3>
-              <p>No notifications yet.</p>
-            </div>
-          </div>
-        )}
       </header>
+
+      {showNotifications && (
+        <div className="fixed right-6 top-24 z-50 w-80 rounded-2xl border border-fuchsia-800 bg-zinc-950 p-5 shadow-2xl shadow-fuchsia-900/40">
+          <div className="flex items-center justify-between">
+            <h3 className="font-bold text-white">Notifications</h3>
+
+            <button
+              onClick={() => setShowNotifications(false)}
+              className="rounded-full px-2 py-1 text-zinc-400 hover:bg-zinc-800 hover:text-white"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div className="mt-4 rounded-xl border border-zinc-800 bg-black p-4">
+            <p className="text-sm text-white">No notifications yet.</p>
+            <p className="mt-2 text-sm text-zinc-500">
+              Creator updates and new manga releases will appear here.
+            </p>
+          </div>
+        </div>
+      )}
 
       {message && (
         <div className="mx-auto mt-6 max-w-6xl px-6">
@@ -150,10 +169,13 @@ export default function Home() {
             className="rounded-3xl border border-purple-800/70 bg-zinc-950/40 p-10 text-center"
           >
             <div className="text-5xl">{icon}</div>
+
             <h2 className="mt-4 text-3xl font-black">{title}</h2>
+
             <p className="mt-3 text-xl font-black text-fuchsia-500">
               COMING SOON
             </p>
+
             <p className="mx-auto mt-5 max-w-sm text-zinc-300">{text}</p>
           </div>
         ))}
@@ -162,10 +184,13 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-6 py-6">
         <div className="rounded-3xl border border-purple-800/70 bg-zinc-950/40 p-12 text-center">
           <div className="text-5xl">🎨</div>
+
           <h2 className="mt-4 text-4xl font-black">Creator Applications</h2>
+
           <p className="mt-3 text-3xl font-black text-fuchsia-500">
             OPEN NOW
           </p>
+
           <p className="mx-auto mt-5 max-w-2xl text-zinc-300">
             Submit your manga, webcomic, or anime-inspired story and become one
             of the first creators on the platform.
