@@ -35,12 +35,12 @@ export default function Home() {
       <header className="sticky top-0 z-50 border-b border-fuchsia-900/40 bg-black">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-6">
           <div className="flex items-center">
-  <img
-    src="/logo.png"
-    alt="Overstimulate Anime"
-    className="h-14 w-auto"
-  />
-</div>
+            <img
+              src="/logo.png"
+              alt="Overstimulate Anime"
+              className="h-14 w-auto"
+            />
+          </div>
 
           <nav className="flex items-center gap-8 text-sm font-semibold">
             <a className="cursor-pointer border-b-2 border-fuchsia-500 pb-1 text-fuchsia-500">
