@@ -13,6 +13,7 @@ export default function Home() {
       setMessage("Type something in the search bar first.");
       return;
     }
+
     setMessage(`Search for "${search}" is coming soon.`);
   }
 
@@ -34,9 +35,15 @@ export default function Home() {
             <a className="cursor-pointer border-b-2 border-fuchsia-500 pb-1 text-fuchsia-500">
               Home
             </a>
-            <a className="cursor-pointer text-zinc-300 hover:text-white">Genres</a>
-            <a className="cursor-pointer text-zinc-300 hover:text-white">Trending</a>
-            <a className="cursor-pointer text-zinc-300 hover:text-white">Browse</a>
+            <a className="cursor-pointer text-zinc-300 hover:text-white">
+              Genres
+            </a>
+            <a className="cursor-pointer text-zinc-300 hover:text-white">
+              Trending
+            </a>
+            <a className="cursor-pointer text-zinc-300 hover:text-white">
+              Browse
+            </a>
           </nav>
 
           <div className="flex items-center gap-4">
@@ -51,6 +58,7 @@ export default function Home() {
                 placeholder="Search..."
                 className="w-52 bg-transparent text-sm text-white outline-none placeholder:text-zinc-500"
               />
+
               <button onClick={handleSearch} className="ml-2 text-sm">
                 🔍
               </button>
@@ -74,60 +82,55 @@ export default function Home() {
       </header>
 
       {showNotifications && (
-        <div className="fixed right-6 top-24 z-50 max-h-[80vh] w-96 overflow-y-auto rounded-xl border border-fuchsia-800 bg-zinc-950 shadow-2xl shadow-fuchsia-900/40">
-          <div className="sticky top-0 border-b border-zinc-800 bg-zinc-950 p-5">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-black">
-                Overstimulate <span className="text-fuchsia-500">Updates</span>
+        <>
+          <div
+            className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm"
+            onClick={() => setShowNotifications(false)}
+          />
+
+          <div className="fixed left-1/2 top-1/2 z-50 w-[420px] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-fuchsia-800 bg-zinc-950 shadow-2xl shadow-fuchsia-900/40">
+            <div className="flex items-center justify-between border-b border-zinc-800 p-5">
+              <h2 className="text-xl font-black">
+                Overstimulate{" "}
+                <span className="text-fuchsia-500">Notifications</span>
               </h2>
 
               <button
                 onClick={() => setShowNotifications(false)}
                 className="rounded-full px-3 py-1 text-xl text-zinc-400 hover:bg-zinc-800 hover:text-white"
               >
-                ×
+                ✕
               </button>
             </div>
 
-            <p className="mt-3 text-sm text-zinc-400">
-              Platform news, creator updates, and manga release alerts will appear here.
-            </p>
+            <div className="max-h-[500px] overflow-y-auto p-5">
+              <div className="rounded-xl border border-zinc-800 bg-black p-4">
+                <p className="font-bold text-white">No notifications yet.</p>
 
-            <button className="mt-4 w-full rounded-full bg-fuchsia-600 py-3 font-bold hover:bg-fuchsia-500">
-              Explore Updates ↗
-            </button>
-          </div>
+                <p className="mt-2 text-sm text-zinc-500">
+                  Creator updates and new manga releases will appear here.
+                </p>
+              </div>
 
-          <div className="flex border-b border-zinc-800 text-sm font-bold">
-            <button className="w-1/2 py-4 text-zinc-400">Creator News</button>
-            <button className="w-1/2 border-b-2 border-fuchsia-500 py-4 text-fuchsia-500">
-              Notifications
-            </button>
-          </div>
+              <div className="mt-4 rounded-xl border border-zinc-800 bg-black p-4">
+                <p className="font-bold text-white">Creator applications</p>
 
-          <div className="space-y-5 p-5">
-            <div className="rounded-xl border border-zinc-800 bg-black p-4">
-              <p className="font-bold text-white">No notifications yet</p>
-              <p className="mt-2 text-sm text-zinc-400">
-                When creators publish manga, updates will show here.
-              </p>
-            </div>
+                <p className="mt-2 text-sm text-zinc-500">
+                  Application alerts and review updates will appear here soon.
+                </p>
+              </div>
 
-            <div className="rounded-xl border border-zinc-800 bg-black p-4">
-              <p className="font-bold text-white">Creator applications</p>
-              <p className="mt-2 text-sm text-zinc-400">
-                Application alerts and review updates will appear here soon.
-              </p>
-            </div>
+              <div className="mt-4 rounded-xl border border-zinc-800 bg-black p-4">
+                <p className="font-bold text-white">New manga releases</p>
 
-            <div className="rounded-xl border border-zinc-800 bg-black p-4">
-              <p className="font-bold text-white">New manga releases</p>
-              <p className="mt-2 text-sm text-zinc-400">
-                Once manga is uploaded, release notifications will appear in this panel.
-              </p>
+                <p className="mt-2 text-sm text-zinc-500">
+                  Once manga is uploaded, release notifications will appear in
+                  this panel.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {message && (
@@ -140,7 +143,9 @@ export default function Home() {
 
       <section className="mx-auto max-w-6xl px-6 py-10">
         <div className="rounded-3xl border border-purple-700/60 bg-gradient-to-r from-black via-purple-950 to-fuchsia-900 p-12 shadow-2xl shadow-purple-900/40">
-          <p className="text-sm font-bold text-red-400">🔥 PLATFORM LAUNCHING SOON</p>
+          <p className="text-sm font-bold text-red-400">
+            🔥 PLATFORM LAUNCHING SOON
+          </p>
 
           <h1 className="mt-5 text-6xl font-black leading-none">
             OVERSTIMULATE
@@ -149,7 +154,8 @@ export default function Home() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-xl text-zinc-100">
-            A new home for independent manga, webcomics, and anime-inspired stories.
+            A new home for independent manga, webcomics, and anime-inspired
+            stories.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -172,26 +178,68 @@ export default function Home() {
 
       <section className="mx-auto grid max-w-6xl gap-6 px-6 py-6 md:grid-cols-3">
         {[
-          ["🆕", "New Added", "When creators publish manga, the newest uploads will appear here first."],
-          ["⭐", "Featured Series", "Featured stories selected by the team will be displayed here."],
-          ["⚡", "New Releases", "New chapters and updates will appear here automatically."],
+          [
+            "🆕",
+            "New Added",
+            "When creators publish manga, the newest uploads will appear here first.",
+          ],
+          [
+            "⭐",
+            "Featured Series",
+            "Featured stories selected by the team will be displayed here.",
+          ],
+          [
+            "⚡",
+            "New Releases",
+            "New chapters and updates will appear here automatically.",
+          ],
         ].map(([icon, title, text]) => (
           <div
             key={title}
             className="rounded-3xl border border-purple-800/70 bg-zinc-950/40 p-10 text-center"
           >
             <div className="text-5xl">{icon}</div>
+
             <h2 className="mt-4 text-3xl font-black">{title}</h2>
-            <p className="mt-3 text-xl font-black text-fuchsia-500">COMING SOON</p>
+
+            <p className="mt-3 text-xl font-black text-fuchsia-500">
+              COMING SOON
+            </p>
+
             <p className="mx-auto mt-5 max-w-sm text-zinc-300">{text}</p>
           </div>
         ))}
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-6">
+        <div className="rounded-3xl border border-purple-800/70 bg-zinc-950/40 p-12 text-center">
+          <div className="text-5xl">🎨</div>
+
+          <h2 className="mt-4 text-4xl font-black">Creator Applications</h2>
+
+          <p className="mt-3 text-3xl font-black text-fuchsia-500">
+            OPEN NOW
+          </p>
+
+          <p className="mx-auto mt-5 max-w-2xl text-zinc-300">
+            Submit your manga, webcomic, or anime-inspired story and become one
+            of the first creators on the platform.
+          </p>
+
+          <button
+            onClick={() => setMessage("Creator application form coming soon.")}
+            className="mt-8 rounded-lg bg-fuchsia-600 px-8 py-3 font-bold hover:bg-fuchsia-500"
+          >
+            Apply Now
+          </button>
+        </div>
       </section>
 
       <footer className="mt-16 border-t border-purple-900/40 py-8 text-center text-zinc-400">
         <h2 className="text-2xl font-black text-white">
           OVERSTIMULATE <span className="text-fuchsia-500">ANIME</span>
         </h2>
+
         <p className="mt-2">Infinite stories. Maximum energy.</p>
       </footer>
     </main>
