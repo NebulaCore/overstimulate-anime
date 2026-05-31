@@ -8,6 +8,7 @@ export default function Home() {
   const [hasUnread, setHasUnread] = useState(false);
   const [activeTab, setActiveTab] = useState("Home");
   const [message, setMessage] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("All Genres");
 
   useEffect(() => {
     const saved = localStorage.getItem("hasUnread");
@@ -237,24 +238,46 @@ export default function Home() {
       )}
 
       {activeTab === "Genres" && (
-        <section className="mx-auto max-w-6xl px-6 py-10">
-          <h1 className="mb-8 text-5xl font-black">Genres</h1>
+  <section className="mx-auto flex max-w-7xl gap-8 px-6 py-10">
+    <aside className="w-64 rounded-3xl border border-purple-800 bg-zinc-950/40 p-5">
+      <h2 className="mb-5 text-xl font-black text-fuchsia-500">
+        Genres
+      </h2>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {["Action", "Fantasy", "Romance", "Comedy", "Horror", "Sci-Fi"].map(
-              (genre) => (
-                <div
-                  key={genre}
-                  className="rounded-3xl border border-purple-800 bg-zinc-950/40 p-8 text-center"
-                >
-                  <h2 className="text-2xl font-black">{genre}</h2>
-                  <p className="mt-3 text-fuchsia-500">COMING SOON</p>
-                </div>
-              )
-            )}
-          </div>
-        </section>
+      {["All Genres", "Action", "Fantasy", "Romance", "Comedy", "Horror", "Sci-Fi"].map(
+        (genre) => (
+          <button
+            key={genre}
+            onClick={() => setSelectedGenre(genre)}
+            className={`mb-3 w-full rounded-xl px-4 py-3 text-left font-bold transition ${
+              selectedGenre === genre
+                ? "bg-fuchsia-600 text-white"
+                : "text-zinc-300 hover:bg-zinc-900 hover:text-white"
+            }`}
+          >
+            {genre}
+          </button>
+        )
       )}
+    </aside>
+
+    <div className="flex-1">
+      <h1 className="mb-8 text-5xl font-black">{selectedGenre}</h1>
+
+      <div className="rounded-3xl border border-purple-800 bg-zinc-950/40 p-12 text-center">
+        <h2 className="text-3xl font-black">
+          {selectedGenre === "All Genres"
+            ? "Choose a Genre"
+            : `${selectedGenre} Manga Coming Soon`}
+        </h2>
+
+        <p className="mt-4 text-zinc-400">
+          Manga in this section will appear once creators start publishing.
+        </p>
+      </div>
+    </div>
+  </section>
+)}
 
       {activeTab === "Trending" && (
         <section className="mx-auto max-w-6xl px-6 py-10">
