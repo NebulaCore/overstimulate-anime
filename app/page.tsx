@@ -1,11 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const [search, setSearch] = useState("");
   const [showNotifications, setShowNotifications] = useState(false);
-  const [hasUnread, setHasUnread] = useState(true);
+  const [hasUnread, setHasUnread] = useState(false);
+
+useEffect(() => {
+  const saved = localStorage.getItem("hasUnread");
+
+  if (saved === null) {
+    setHasUnread(true);
+    localStorage.setItem("hasUnread", "true");
+  } else {
+    setHasUnread(saved === "true");
+  }
+}, []);
   const [message, setMessage] = useState("");
 
   function showMessage(text: string) {
@@ -26,8 +37,9 @@ export default function Home() {
   }
 
   function openNotifications() {
-    setShowNotifications(true);
-    setHasUnread(false);
+  setShowNotifications(true);
+  setHasUnread(false);
+  localStorage.setItem("hasUnread", "false");
   }
 
   return (
