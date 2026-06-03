@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { SignUpButton, UserButton, useUser } from "@clerk/nextjs";
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -9,6 +10,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("Home");
   const [message, setMessage] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("All Genres");
+  const { isSignedIn } = useUser();
 
   useEffect(() => {
     const saved = localStorage.getItem("hasUnread");
@@ -120,12 +122,15 @@ export default function Home() {
               )}
             </div>
 
-            <button
-              onClick={() => showMessage("Sign up system coming soon.")}
-              className="whitespace-nowrap rounded-full bg-fuchsia-600 px-6 py-2 font-bold hover:bg-fuchsia-500"
-            >
-              Sign Up
-            </button>
+           {isSignedIn ? (
+  <UserButton />
+) : (
+  <SignUpButton mode="modal">
+    <button className="whitespace-nowrap rounded-full bg-fuchsia-600 px-6 py-2 font-bold hover:bg-fuchsia-500">
+      Sign Up
+    </button>
+  </SignUpButton>
+)} 
           </div>
         </div>
       </header>
